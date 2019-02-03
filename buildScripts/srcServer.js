@@ -1,5 +1,6 @@
 import express from 'express';
 import path from 'path';
+import chalk from 'chalk';
 
 //import open from 'open';
 import webpack from 'webpack';
@@ -9,7 +10,11 @@ const port = 3000;
 const app = express();
 const compiler = webpack(config)
 
-console.log(config.output.publicPath);
+/* eslint-disable no-console */
+
+// console.log(config.output.publicPath);
+
+console.log(chalk.red('To start app run in browser: localhost:'+port)); // eslint-disable-line no-console
 
 app.use(require('webpack-dev-middleware')(compiler, {
   noInfo: true,
@@ -25,6 +30,6 @@ app.listen(port, function(err){
     console.log(err);
   }
   //else {
-  //  open('http://localhost:' + port);
+  //  open('http://localhost:' + port);   // that is vulnerable library! Run with hands
   //}
 })
